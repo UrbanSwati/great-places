@@ -1,12 +1,15 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../widgets/image_input.dart';
 import '../providers/great_places.dart';
 
 class AddPlaceScreen extends StatefulWidget {
-  static const String routeName = 'add-place';
+  static const routeName = '/add-place';
 
+  @override
   _AddPlaceScreenState createState() => _AddPlaceScreenState();
 }
 
@@ -19,11 +22,11 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   }
 
   void _savePlace() {
-    if(_titleController.text.isEmpty || _pickedImage == null) {
+    if (_titleController.text.isEmpty || _pickedImage == null) {
       return;
     }
-    Provider.of<GreatPlaces>(context, listen: false).addPlace(_titleController.text, _pickedImage);
-
+    Provider.of<GreatPlaces>(context, listen: false)
+        .addPlace(_titleController.text, _pickedImage);
     Navigator.of(context).pop();
   }
 
@@ -34,13 +37,12 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
         title: Text('Add a New Place'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10),
                 child: Column(
                   children: <Widget>[
                     TextField(
@@ -63,7 +65,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             elevation: 0,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             color: Theme.of(context).accentColor,
-          )
+          ),
         ],
       ),
     );
